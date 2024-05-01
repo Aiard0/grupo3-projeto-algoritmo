@@ -1,37 +1,37 @@
-cond = 0
-isLogged = False
-adms = [['41','Davi', 1234],
-        ['51', 'Roberto', 1235]]
-funcs = [['José', '1234']]
+from os import system as cmd
 
-def Login():
-    tipe = input("Qual o tipo da conta?[ADM/Funcionário]: ")
-        
-    if tipe == 'ADM':
-        user = input("Insira seu CPF: ")
-        senha = int(input("Insira sua senha: "))
-        
-        for i in range(len(adms)):
-            if user in adms[i] and senha in adms[i]:
-                print("Login com suceso")
-                isLogged = True
-                ChecarFichas()
-            elif i == len(adms)-1 and isLogged == False:
-                print("Login feito com não sucesso")
+users = [['admin','12890509451', 'admin'],
+         ['funcionario','128','Alguma coisa']]
+option = 0
+
+def sistemaAdm():
+    print("Está logado")
+
+while option != 2:
+    print("Bem vindo ao Sistema de Cadastramento Hospitalar\nQual operação Deseja fazer?\n1)Login\n2)Fechar Aplicação")
+    option = int(input())
     
-    elif tipe == 'Funcionário':
-        user = input("Insira seu CPF: ")
-        senha = int(input("Insira sua senha: "))
+    #Quando option for igual a 1 ele irá realizar a operação de login
+    if option == 1:
+        isLogged = False
+        cpf = ''
+        senha = ''
+        
+        #Sistema de Login onde vai ser verificado se o usuário está ou não logado certo
+        while isLogged != True:
+            cpf = input("Insira seu CPF: ")
+            senha = input("Insira sua senha: ")
+    
+            #Vai verificar na lista de usuários do sistema se as informações inseridas está dentro
+            for i in range(len(users)):  
+                if cpf == users[i][1] and senha == users[i][2]:
+                    isLogged = True
+                    
+                    #Caso o usuário seja ADM ele será executado uma operação diferente da de funcionários
+                    if users[i][0] == 'admin':
+                        sistemaAdm()
 
-def ChecarFichas():
-    cond = 1
-    while cond != 2:
-        print("Qual operação gostaria de fazer?\n")
-        cond = int(input("1)Ver fichas dos pacientes\n2)Sair"))
-
-while cond != 3:
-    print("Bem vindo ao sistema de login do hospital tal\n")
-    cond = int(input("Qual operação deseja fazer?\n1)Login\n2)Cadastramento\n3)Sair\n"))
-
-    if cond == 1:
-        Login() 
+    #Caso o usuario digite outro número sem ser 1 ou 2 o programa irá imprimir uma mensagem e repetir a aplicação
+    elif option != 2:
+        cmd('clear')
+        print("Opção escolhida inexistente, por favor escolha uma das 2 disponiveis\n")

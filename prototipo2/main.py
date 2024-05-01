@@ -2,12 +2,22 @@ from os import system as cmd
 
 users = [['admin','12890509451', 'admin'],
          ['funcionario','128','Alguma coisa']]
+pacients = []
+
 option = 0
 
 def sistemaAdm():
-    print("Está logado")
+    cond = 0
+    while cond != 3:
+        cmd('clear')
+        print("Bem vindo ao sistema de administradores do sistema hospitalar\nEscolha a operação que deseja fazer\n1)Cadastrar Pacientes\n2)Acessar Documentos\n3)Retornar a Tela Inicial")     
+        cond = int(input())
+
+def sistemaFuncionario():
+    print("Sistema de funcionários")
 
 while option != 2:
+    cmd('clear')
     print("Bem vindo ao Sistema de Cadastramento Hospitalar\nQual operação Deseja fazer?\n1)Login\n2)Fechar Aplicação")
     option = int(input())
     
@@ -30,6 +40,8 @@ while option != 2:
                     #Caso o usuário seja ADM ele será executado uma operação diferente da de funcionários
                     if users[i][0] == 'admin':
                         sistemaAdm()
+                    elif users[i][0] == 'funcionario':
+                        sistemaFuncionario()
 
     #Caso o usuario digite outro número sem ser 1 ou 2 o programa irá imprimir uma mensagem e repetir a aplicação
     elif option != 2:

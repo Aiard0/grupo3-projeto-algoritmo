@@ -43,13 +43,3 @@ def Decriptar(decripto):
 
     return decripto
 
-while cond != 3:
-    modo = input()
-
-    if modo == 'E':
-        cripto = Encriptar(cripto)
-        print(cripto)
-
-    elif modo == 'D':
-        decripto = Decriptar(decripto)
-        print(decripto)
